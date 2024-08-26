@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskaty_app/core/functions/navigation.dart';
+import 'package:taskaty_app/core/services/local_storage.dart';
 import 'package:taskaty_app/core/utils/colors.dart';
 import 'package:taskaty_app/core/utils/text_style.dart';
-import 'package:taskaty_app/feature/home/home_view.dart';
+import 'package:taskaty_app/feature/home/page/home_view.dart';
 import 'package:taskaty_app/feature/upload/upload_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -15,12 +15,14 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  var box = Hive.box('userBox');
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       pushReplacement(
-          context, (box.get('isUpload') ?? false) ? HomeView() : UploadView());
+          context,
+          (AppLocalStorage.getCacheData(AppLocalStorage.kIsUpLoad) ?? false)
+              ? HomeView()
+              : UploadView());
     });
   }
 
