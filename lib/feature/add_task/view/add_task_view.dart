@@ -17,7 +17,7 @@ class _AddTaskViewState extends State<AddTaskView> {
   String taskDate = DateFormat.yMd().format(DateTime.now());
   String startTime = DateFormat('hh:mm a').format(DateTime.now());
   String endTime =
-      DateFormat('hh:mm a').format(DateTime.now().add(Duration(hours: 1)));
+      DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1)));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _AddTaskViewState extends State<AddTaskView> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
               color: AppColors.primaryColor,
             )),
@@ -38,164 +38,167 @@ class _AddTaskViewState extends State<AddTaskView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Title',
-              style: getTitleTextStyle(fontSize: 14),
-            ),
-            Gap(8),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'EX: Go To School',
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Title',
+                style: getTitleTextStyle(fontSize: 14),
               ),
-            ),
-            Gap(10),
-            Text(
-              'Note',
-              style: getTitleTextStyle(fontSize: 14),
-            ),
-            Gap(8),
-            TextFormField(
-              maxLines: 4,
-              decoration: InputDecoration(
-                hintText: 'Add Note',
-              ),
-            ),
-            Gap(10),
-            Text(
-              'Date',
-              style: getTitleTextStyle(fontSize: 14),
-            ),
-            Gap(8),
-            TextFormField(
-              onTap: () {
-                showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime(2040),
-                ).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      taskDate = DateFormat.yMd().format(value);
-                    });
-                  }
-                });
-              },
-              readOnly: true,
-              decoration: InputDecoration(
-                hintText: taskDate,
-                hintStyle: getBodyTextStyle(),
-                suffixIcon: Icon(Icons.calendar_month_rounded,
-                    color: AppColors.primaryColor),
-              ),
-            ),
-            Gap(10),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Start Time',
-                    style: getTitleTextStyle(fontSize: 14),
-                  ),
+              const Gap(8),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'EX: Go To School',
                 ),
-                Gap(10),
-                Expanded(
-                  child: Text(
-                    'End Time',
-                    style: getTitleTextStyle(fontSize: 14),
-                  ),
+              ),
+              const Gap(10),
+              Text(
+                'Note',
+                style: getTitleTextStyle(fontSize: 14),
+              ),
+              const Gap(8),
+              TextFormField(
+                maxLines: 4,
+                decoration: const InputDecoration(
+                  hintText: 'Add Note',
                 ),
-              ],
-            ),
-            Gap(8),
-            Row(
-              children: [
-                Expanded(
-                    child: TextFormField(
-                  onTap: () {
-                    showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                    ).then((value) {
-                      if (value != null) {
-                        setState(() {
-                          startTime = value.format(context);
-                        });
-                      }
-                    });
-                  },
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: startTime,
-                    hintStyle: getBodyTextStyle(),
-                    suffixIcon: Icon(Icons.watch_later_outlined,
-                        color: AppColors.primaryColor),
+              ),
+              const Gap(10),
+              Text(
+                'Date',
+                style: getTitleTextStyle(fontSize: 14),
+              ),
+              const Gap(8),
+              TextFormField(
+                onTap: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2040),
+                  ).then((value) {
+                    if (value != null) {
+                      setState(() {
+                        taskDate = DateFormat.yMd().format(value);
+                      });
+                    }
+                  });
+                },
+                readOnly: true,
+                decoration: InputDecoration(
+                  hintText: taskDate,
+                  hintStyle: getBodyTextStyle(),
+                  suffixIcon: const Icon(Icons.calendar_month_rounded,
+                      color: AppColors.primaryColor),
+                ),
+              ),
+              const Gap(10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Start Time',
+                      style: getTitleTextStyle(fontSize: 14),
+                    ),
                   ),
-                )),
-                Gap(10),
-                Expanded(
-                    child: TextFormField(
-                  onTap: () {
-                    showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                    ).then((value) {
-                      if (value != null) {
-                        setState(() {
-                          endTime = value.format(context);
-                        });
-                      }
-                    });
-                  },
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: endTime,
-                    hintStyle: getBodyTextStyle(),
-                    suffixIcon: Icon(Icons.watch_later_outlined,
-                        color: AppColors.primaryColor),
+                  const Gap(10),
+                  Expanded(
+                    child: Text(
+                      'End Time',
+                      style: getTitleTextStyle(fontSize: 14),
+                    ),
                   ),
-                )),
-              ],
-            ),
-            Gap(20),
-            Row(
-              children: [
-                Expanded(
-                  child: Row(
-                      children: List.generate(3, (int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: GestureDetector(
-                        onTap: () {
+                ],
+              ),
+              const Gap(8),
+              Row(
+                children: [
+                  Expanded(
+                      child: TextFormField(
+                    onTap: () {
+                      showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      ).then((value) {
+                        if (value != null) {
                           setState(() {
-                            colorIndex = index;
+                            startTime = value.format(context);
                           });
-                        },
-                        child: CircleAvatar(
-                          radius: 22,
-                          backgroundColor: index == 0
-                              ? AppColors.primaryColor
-                              : index == 1
-                                  ? AppColors.orangeColor
-                                  : AppColors.redColor,
-                          child: colorIndex == index
-                              ? Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                )
-                              : null,
+                        }
+                      });
+                    },
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      hintText: startTime,
+                      hintStyle: getBodyTextStyle(),
+                      suffixIcon: const Icon(Icons.watch_later_outlined,
+                          color: AppColors.primaryColor),
+                    ),
+                  )),
+                  const Gap(10),
+                  Expanded(
+                      child: TextFormField(
+                    onTap: () {
+                      showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      ).then((value) {
+                        if (value != null) {
+                          setState(() {
+                            endTime = value.format(context);
+                          });
+                        }
+                      });
+                    },
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      hintText: endTime,
+                      hintStyle: getBodyTextStyle(),
+                      suffixIcon: const Icon(Icons.watch_later_outlined,
+                          color: AppColors.primaryColor),
+                    ),
+                  )),
+                ],
+              ),
+              const Gap(20),
+              Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                        children: List.generate(3, (int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              colorIndex = index;
+                            });
+                          },
+                          child: CircleAvatar(
+                            radius: 22,
+                            backgroundColor: index == 0
+                                ? AppColors.primaryColor
+                                : index == 1
+                                    ? AppColors.orangeColor
+                                    : AppColors.redColor,
+                            child: colorIndex == index
+                                ? const Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                  )
+                                : null,
+                          ),
                         ),
-                      ),
-                    );
-                  })),
-                ),
-                CustomButton(width: 150, text: 'Create Task', onPressed: () {}),
-              ],
-            ),
-          ],
+                      );
+                    })),
+                  ),
+                  CustomButton(
+                      width: 150, text: 'Create Task', onPressed: () {}),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
