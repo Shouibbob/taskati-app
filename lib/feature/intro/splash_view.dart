@@ -36,7 +36,7 @@ class _SplashViewState extends State<SplashView> {
             Lottie.asset('assets/logo.json'),
             Text(
               'Taskati',
-              style: getTitleTextStyle(
+              style: getTitleTextStyle(context,
                   fontSize: 20, color: AppColors.primaryColor),
             ),
             Text(

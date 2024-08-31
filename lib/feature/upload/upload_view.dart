@@ -49,7 +49,7 @@ class _UploadViewState extends State<UploadView> {
               },
               child: Text(
                 'Done',
-                style: getBodyTextStyle(color: AppColors.primaryColor),
+                style: getBodyTextStyle(context, color: AppColors.primaryColor),
               ))
         ],
       ),
@@ -92,7 +92,6 @@ class _UploadViewState extends State<UploadView> {
                   },
                   decoration: InputDecoration(
                     hintText: 'Enter your name',
-                   
                   ),
                 ),
               ],

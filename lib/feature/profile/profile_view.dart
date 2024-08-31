@@ -27,8 +27,22 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    bool mode =
+        AppLocalStorage.getCacheData(AppLocalStorage.kIsDarkMode) ?? false;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          //make dark and light button
+          IconButton(
+              onPressed: () {
+                AppLocalStorage.cacheData(AppLocalStorage.kIsDarkMode, !mode);
+              },
+              icon: Icon(
+                mode ? Icons.dark_mode : Icons.light_mode,
+                color: AppColors.primaryColor,
+              ))
+        ],
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -54,13 +68,15 @@ class _ProfileViewState extends State<ProfileView> {
                             // Important widget
                             showModalBottomSheet(
                                 context: context,
-                                backgroundColor: AppColors.whiteColor,
+                                backgroundColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 builder: (context) {
                                   return Container(
                                     padding: const EdgeInsets.all(20),
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                        color: AppColors.whiteColor,
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor,
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: Column(
@@ -91,12 +107,13 @@ class _ProfileViewState extends State<ProfileView> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(5),
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: AppColors.whiteColor,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                             child: const Icon(
                               Icons.camera_alt_rounded,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                         )),
@@ -112,6 +129,7 @@ class _ProfileViewState extends State<ProfileView> {
                     Text(
                       name,
                       style: getTitleTextStyle(
+                        context,
                         color: AppColors.primaryColor,
                       ),
                     ),

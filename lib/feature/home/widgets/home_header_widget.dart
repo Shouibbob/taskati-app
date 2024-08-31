@@ -21,11 +21,13 @@ class HomeHeaderWidget extends StatelessWidget {
           children: [
             Text(
               'hello, ${AppLocalStorage.getCacheData(AppLocalStorage.kName)}',
-              style: getTitleTextStyle(color: AppColors.primaryColor),
+              style: getTitleTextStyle(context, color: AppColors.primaryColor),
             ),
             Text(
               'Have a nice day',
-              style: getBodyTextStyle(),
+              style: getBodyTextStyle(
+                context,
+              ),
             ),
           ],
         ),

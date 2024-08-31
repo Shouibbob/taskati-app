@@ -18,8 +18,8 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height?? 50,
-      width: width?? 250,
+      height: height ?? 50,
+      width: width ?? 250,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor,
@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: getBodyTextStyle(color: AppColors.whiteColor),
+          style: getBodyTextStyle(context, color: AppColors.whiteColor),
         ),
       ),
     );

@@ -20,11 +20,11 @@ class TodayHeaderWidget extends StatelessWidget {
             children: [
               Text(
                 DateFormat.yMMMMd().format(DateTime.now()),
-                style: getTitleTextStyle(fontWeight: FontWeight.w700),
+                style: getTitleTextStyle(context, fontWeight: FontWeight.w700),
               ),
               Text(
                 'Today',
-                style: getTitleTextStyle(fontWeight: FontWeight.w700),
+                style: getTitleTextStyle(context, fontWeight: FontWeight.w700),
               ),
             ],
           ),

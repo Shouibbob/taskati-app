@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty_app/core/utils/colors.dart';
 
-TextStyle getTitleTextStyle(
+TextStyle getTitleTextStyle(BuildContext context,
     {double? fontSize, Color? color, FontWeight? fontWeight}) {
   return TextStyle(
     fontFamily: 'Poppins',
     fontSize: fontSize ?? 18,
     fontWeight: fontWeight ?? FontWeight.bold,
-    color: color ?? AppColors.blackColor,
+    color: color ?? Theme.of(context).colorScheme.onSurface,
   );
 }
 
-TextStyle getBodyTextStyle(
+TextStyle getBodyTextStyle(BuildContext context,
     {double? fontSize, Color? color, FontWeight? fontWeight}) {
   return TextStyle(
     fontFamily: 'Poppins',
     fontSize: fontSize ?? 16,
-    color: color ?? AppColors.blackColor,
+    color: color ?? Theme.of(context).colorScheme.onSurface,
   );
 }
 

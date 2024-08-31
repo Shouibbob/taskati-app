@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:taskaty_app/core/model/task_model.dart';
 import 'package:taskaty_app/core/utils/colors.dart';
 import 'package:taskaty_app/core/utils/text_style.dart';
 
 class TaskItemWidget extends StatelessWidget {
   const TaskItemWidget({
     super.key,
+    required this.model,
   });
+
+  final TaskModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,13 @@ class TaskItemWidget extends StatelessWidget {
       padding: EdgeInsets.all(15),
       margin: EdgeInsets.only(bottom: 10, right: 5, left: 5),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: model.color == 0
+            ? AppColors.primaryColor
+            : model.color == 1
+                ? AppColors.orangeColor
+                : model.color == 2
+                    ? AppColors.redColor
+                    : Colors.green,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -24,8 +34,8 @@ class TaskItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Flutter Task',
-                style: getTitleTextStyle(color: Colors.white),
+                model.title,
+                style: getTitleTextStyle(context, color: Colors.white),
               ),
               Gap(6),
               Row(
@@ -37,15 +47,15 @@ class TaskItemWidget extends StatelessWidget {
                   ),
                   Gap(10),
                   Text(
-                    '10:00 AM - 10:00 PM',
+                    '${model.startTime} - ${model.endTime}',
                     style: getSmallTextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ],
               ),
               Gap(6),
               Text(
-                'Flutter Task',
-                style: getBodyTextStyle(color: Colors.white),
+                model.description,
+                style: getBodyTextStyle(context, color: Colors.white),
               ),
             ],
           )),
@@ -58,8 +68,9 @@ class TaskItemWidget extends StatelessWidget {
           RotatedBox(
             quarterTurns: 3,
             child: Text(
-              'TODO',
-              style: getTitleTextStyle(color: Colors.white, fontSize: 12),
+              model.isCompleted ? 'COMPLETED' : 'TODO',
+              style:
+                  getTitleTextStyle(context, color: Colors.white, fontSize: 12),
             ),
           ),
         ],
